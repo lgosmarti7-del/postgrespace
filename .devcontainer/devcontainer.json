@@ -2,18 +2,29 @@
   "name": "Entorno Educativo Postgres",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   
-  // Instala características adicionales en el contenedor si se requieren
+  // Instalamos Python y SSH usando las Features oficiales (así nos aseguramos de que Python SIEMPRE exista)
   "features": {
-    "ghcr.io/devcontainers/features/sshd:1": {}
+    "ghcr.io/devcontainers/features/sshd:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
   },
   
-  // Automatización completa de la instalación y configuración inicial
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y postgresql && sudo service postgresql start && sudo -u postgres psql -c \"ALTER USER postgres PASSWORD '1234';\" && curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/pgadmin-archive-keyring.gpg && echo \"deb [signed-by=/usr/share/keyrings/pgadmin-archive-keyring.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main\" | sudo tee /etc/apt/sources.list.d/pgadmin4.list && sudo apt-get update && sudo apt-get install -y pgadmin4-web && sudo env PGADMIN_SETUP_EMAIL='alumno@postgres.com' PGADMIN_SETUP_PASSWORD='1234' /usr/pgadmin4/venv/bin/python3 /usr/pgadmin4/web/setup.py setup-db",
+  // Separamos la lógica en un script multilínea más fácil de leer y ejecutar para el contenedor
+  "postCreateCommand": [
+    "sudo apt-get update",
+    "sudo apt-get install -y postgresql",
+    "sudo service postgresql start",
+    "sudo -u postgres psql -c \"ALTER USER postgres PASSWORD '1234';\"",
+    "curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/pgadmin-archive-keyring.gpg",
+    "echo \"deb [signed-by=/usr/share/keyrings/pgadmin-archive-keyring.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main\" | sudo tee /etc/apt/sources.list.d/pgadmin4.list",
+    "sudo apt-get update",
+    "sudo apt-get install -y pgadmin4-web",
+    "sudo env PGADMIN_SETUP_EMAIL='alumno@postgres.com' PGADMIN_SETUP_PASSWORD='1234' /usr/pgadmin4/venv/bin/python3 /usr/pgadmin4/web/setup.py setup-db"
+  ],
 
-  // Expone los puertos hacia la máquina local/navegador
   "forwardPorts": [5432, 5050],
 
-  // Controla la visibilidad de los puertos para evitar bloqueos de seguridad de cookies
   "portsAttributes": {
     "5050": {
       "label": "pgAdmin 4 Web",
@@ -26,7 +37,6 @@
     }
   },
 
-  // Extensiones útiles que se instalarán por defecto en el VS Code del alumno
   "customizations": {
     "vscode": {
       "extensions": [
