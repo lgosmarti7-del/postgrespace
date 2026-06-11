@@ -4,6 +4,10 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "workspace",
 
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+
   "runServices": [
     "postgres",
     "pgadmin"
@@ -25,7 +29,8 @@
     "vscode": {
       "extensions": [
         "ms-vscode-remote.remote-containers",
-        "github.codespaces"
+        "github.codespaces",
+        "anthropic.claude-code"
       ]
     }
   }
