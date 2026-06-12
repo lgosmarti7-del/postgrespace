@@ -1,170 +1,40 @@
-# Laboratorio PostgreSQL con GitHub Codespaces
+# Laboratorio PostgreSQL 🐘
 
-Este laboratorio permite trabajar con PostgreSQL y pgAdmin directamente desde el navegador, sin necesidad de instalar software en el computador.
-
-**¿Primera vez aquí?** Consulta la [documentación técnica](#documentación-técnica) para entender cómo funciona este proyecto.
-
-## Requisitos
-
-* Cuenta de GitHub.
-* Acceso a GitHub Codespaces.
+Un laboratorio listo para aprender **PostgreSQL** con **pgAdmin**, sin instalar nada en tu
+computador. El entorno arranca con el servidor ya configurado y una base de datos de ejemplo,
+para que empieces a practicar SQL de inmediato.
 
 ---
 
-## 1. Crear una copia del repositorio
+## 🚀 Cómo empezar
 
-Haz clic en **Fork** para crear una copia de este repositorio en tu cuenta de GitHub.
+Elige cómo levantar el entorno:
 
->![fork](docs/images/fork.png)
-
----
-
-## 2. Crear el Codespace
-
-1. Abre tu fork del repositorio.
-2. Haz clic en **Code**.
-3. Selecciona la pestaña **Codespaces**.
-4. Haz clic en **Create codespace on main**.
-
->![codespaces](docs/images/codespaces.png)
-
-La primera creación puede tardar algunos minutos mientras GitHub prepara el entorno.
-
-> **¿Qué es Codespaces?** — [Lee la documentación](docs/CODESPACES.md)
+| Método | Para quién | Guía |
+|---|---|---|
+| **GitHub Codespaces** ⭐ | Recomendado. Todo en la nube, sin instalar (solo VS Code). | **[Iniciar con Codespaces](docs/INICIO_CODESPACES.md)** |
+| **Instalación local** | _(próximamente)_ Correr postgres en tu propia máquina. | — |
 
 ---
 
-## 3. Abrir el Codespace
+## 📚 Ejercicios
 
-Cuando el entorno termine de iniciar, se recomienda seleccionar:
+Aprende SQL paso a paso, de lo más simple a lo más completo:
 
-**Open in Visual Studio Code**
-- ![open-vscode](docs/images/open_vsc.png)
-- ![open-vscode](docs/images/open_vsc1.png)
-- ![open-vscode](docs/images/open_vsc2.png)
+> 👉 **[Catálogo de ejercicios](exercise/README.md)**
 
-Esta opción suele ser más estable que la versión web cuando la carga inicial del navegador presenta problemas.
-
-También puedes utilizar la versión web si prefieres trabajar completamente desde el navegador.
-
-> **¿Qué son Dev Containers?** — [Lee la documentación](docs/DEVCONTAINER.md)
+Empieza por el set **01 — Veterinaria**: lees e insertas datos, creas tus propias tablas y
+terminas relacionando tres tablas con un `JOIN`.
 
 ---
 
-## 4. Abrir pgAdmin
+## 📖 Guías de uso
 
-1. En Visual Studio Code abre la pestaña **Ports**.
-> ![open-browser](docs/images/vsc_port.png)
-2. Busca el puerto etiquetado como **pgAdmin**.
-3. Haz clic en **Open in Browser**.
+- **[Cómo hacer Backups](docs/BACKUPS.md)** — Respaldos, importaciones y exportaciones de tus bases de datos.
+- **[Registrar el servidor manualmente](docs/REGISTRAR_SERVIDOR.md)** — Solo si el servidor pre-registrado no apareciera en pgAdmin.
 
-No es necesario cambiar la visibilidad de los puertos a Público.
+## 🧠 Conceptos técnicos
 
-> ![open-browser](docs/images/open_browser.png)
----
-
-## 5. Iniciar sesión en pgAdmin
-
-Utiliza las siguientes credenciales:
-
-**Correo:**
-
-```text
-postgres@sql.dev
-```
-
-**Contraseña:**
-
-```text
-1234
-```
-
-> ![port-vscode](docs/images/pg_login.png)
----
-
-## 6. Registrar el servidor PostgreSQL
-
-La primera vez que ingreses a pgAdmin deberás registrar el servidor.
-
-> ![port-vscode](docs/images/pg_servers.png)
-
-### Pestaña General
-
-**Name**
-
-```text
-PostgreSQL Local, MY_SERVIDOR, etc.
-```
-> ![port-vscode](docs/images/pg_name.png)
-
-
-
-### Pestaña Connection
-
-**Host name/address**
-
-```text
-postgres
-```
-
-**Port**
-
-```text
-5432
-```
-
-**Maintenance database**
-
-```text
-postgres
-```
-
-**Username**
-
-```text
-postgres
-```
-
-**Password**
-
-```text
-1234
-```
-
-Marca la opción:
-
-```text
-Save Password
-```
-
-y presiona **Save**.
-
-> ![pg-connection](docs/images/pg_connection.png)
----
-
-## 7. Verificar la conexión
-
-Si la configuración es correcta, aparecerá el servidor en el panel izquierdo de pgAdmin y podrás:
-
-* Crear bases de datos.
-* Crear tablas.
-* Ejecutar consultas SQL.
-* Administrar usuarios.
-* Exportar e importar datos.
-
-> ![port-vscode](docs/images/pgadmin.png)
----
-
-## 8. Dale Like al repositorio si te ha sido útil para tu aprendizaje de PostgreSQL.
-
----
-
-## Documentación técnica
-
-### Guías de uso
-- **[Cómo hacer Backups](docs/BACKUPS.md)** — Realizar respaldos, importaciones y exportaciones de tus bases de datos PostgreSQL.
-
-### Conceptos técnicos
 - **[GitHub Codespaces](docs/CODESPACES.md)** — ¿Qué es Codespaces y cómo funciona en este proyecto?
 - **[Dev Containers](docs/DEVCONTAINER.md)** — Qué son los contenedores de desarrollo y por qué los usamos.
 - **[Docker](docs/DOCKER.md)** — Entiende Docker, la tecnología base de este proyecto.
@@ -172,48 +42,16 @@ Si la configuración es correcta, aparecerá el servidor en el panel izquierdo d
 
 ---
 
-## Solución de problemas
+## 🔑 Credenciales del laboratorio
 
-### La página de pgAdmin no carga
-
-1. Espera unos segundos y vuelve a intentarlo.
-2. Verifica que el Codespace haya terminado de iniciarse.
-3. Si utilizas la versión web y sigue fallando, abre el Codespace mediante **Open in Visual Studio Code** y vuelve a abrir el puerto desde la pestaña **Ports**.
-
-### No puedo conectarme al servidor
-
-Verifica que los datos sean exactamente:
-
-```text
-Host: postgres
-Puerto: 5432
-Usuario: postgres
-Contraseña: 1234
-```
-
-No utilices:
-
-```text
-localhost
-127.0.0.1
-URLs públicas de Codespaces
-```
-
-ya que PostgreSQL se encuentra en un contenedor interno accesible mediante el nombre `postgres`.
-
----
-
-
-## Credenciales del laboratorio
-
-### pgAdmin
+**pgAdmin**
 
 ```text
 Correo: postgres@sql.dev
 Contraseña: 1234
 ```
 
-### PostgreSQL
+**PostgreSQL**
 
 ```text
 Host: postgres
@@ -222,3 +60,10 @@ Usuario: postgres
 Contraseña: 1234
 Base de datos: postgres
 ```
+
+> El servidor ya viene registrado en pgAdmin y la base de ejemplo **`veterinariadb`**
+> (con la tabla `tutores` y 2 registros) se crea automáticamente en el primer arranque.
+
+---
+
+⭐ Si este laboratorio te fue útil para aprender PostgreSQL, **dale una estrella al repositorio**.

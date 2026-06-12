@@ -15,6 +15,13 @@ services:
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
+    volumes:
+      # Persistencia del data directory (gitignored, NO se commitea).
+      # La primera vez que está vacío, se ejecutan los scripts de initdb.
+      - ../pgdta:/var/lib/postgresql/data
+      # Scripts de inicialización automática (commiteados). Solo corren
+      # cuando el data directory está vacío -> crean la DB de ejemplo.
+      - ./initdb:/docker-entrypoint-initdb.d
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -26,6 +33,9 @@ services:
     ports:
       - "5050:80"
     volumes:
+      # Pre-registra el servidor PostgreSQL: los alumnos no tienen que
+      # registrarlo a mano, ya aparece bajo "Servers" al abrir pgAdmin.
+      - ./pgadmin/servers.json:/pgadmin4/servers.json
       # Montar data/ directamente sobre el subdirectorio del usuario de pgAdmin.
       # pgAdmin escribe los backups en /var/lib/pgadmin/storage/postgres_sql.dev/
       # y como ese path ya existe como mount point, no intenta crearlo ni hacerle chmod 700.

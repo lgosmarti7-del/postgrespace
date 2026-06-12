@@ -76,7 +76,9 @@ Cuando haces clic en "Reopen in Container", Dev Containers lee este archivo y co
 Para este proyecto: **No**. Solo debes saber:
 1. Hacer clic en "Reopen in Container" cuando lo pide
 2. Que estás trabajando *dentro* de un contenedor
-3. Que los cambios se guardan en tu máquina (en `data/`)
+3. Que al arrancar ya tienes el servidor registrado en pgAdmin y una base de
+   datos de ejemplo (`veterinariadb`) creada automáticamente
+4. Que los datos de PostgreSQL persisten en `pgdta/` y tus backups en `data/`
 
 El resto está automatizado.
 
