@@ -10,6 +10,15 @@
     }
   },
 
+  "postCreateCommand": "sudo apt-get update -qq && sudo apt-get install -y postgresql-client",
+
+  "remoteEnv": {
+    "PGHOST": "postgres",
+    "PGUSER": "postgres",
+    "PGPASSWORD": "1234",
+    "PGDATABASE": "postgres"
+  },
+
   "runServices": [
     "postgres",
     "pgadmin"
